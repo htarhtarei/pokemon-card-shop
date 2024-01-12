@@ -3,6 +3,6 @@ import cardReducer from "../store/cardSlice"
 
 export const store = configureStore({
     reducer: {
-        card: cardReducer
+        card: cardReducer,
     }
 })

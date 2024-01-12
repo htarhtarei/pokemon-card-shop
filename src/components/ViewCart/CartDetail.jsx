@@ -10,7 +10,7 @@ const CartDetail = () => {
 
   return (
     <div className="max-h-[590px] mb-5 bg-white p-8 w-[416px] rounded-3xl">
-      {isPay ?<CartPaymentSucess/> :<CartList/>}
+      {isPay ? <CartPaymentSucess /> : <CartList />}
       
       <button onClick={() => { dispatch(getIsShow(false)); dispatch(getIsPay(false))}} className="bg-red-600 p-3 rounded-lg absolute bottom-0 left-52">
         <img src={closewhite} alt="closeIcon" />

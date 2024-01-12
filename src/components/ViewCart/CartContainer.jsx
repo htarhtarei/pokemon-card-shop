@@ -8,8 +8,8 @@ const CartContainer = () => {
   return (
     <div className="flex justify-center ">
       <div className="fixed bottom-8 mt-12 z-40 ">
-        {isShow ?<CartDetail/> :<CartBtn/>}
-          </div>
+        {isShow ? <CartDetail /> :<CartBtn/>}
+        </div>
     </div>
   );
 };
