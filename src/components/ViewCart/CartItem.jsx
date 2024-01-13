@@ -9,12 +9,11 @@ import {
 } from "../../store/cardSlice";
 
 const CartItem = ({ card }) => {
-  // console.log(card);
   const [cardQty, setCardQty] = useState(card.qty)
   const dispatch = useDispatch()
   const price = card.cardmarket.prices.trendPrice * cardQty;
 
-  const increHandler = (id, type) => {
+  const increHandler = (id, type ) => {
     if (cardQty < 20) {
       setCardQty(cardQty + 1)
       dispatch(increAndDecre({ id, type }))
@@ -78,7 +77,7 @@ const CartItem = ({ card }) => {
           </div>
         </div>
         <p className="text-[12px] font-semibold text-end">price</p>
-        <p className="font-semibold text-[#298BFD]">${ price.toFixed(2) }</p>
+        <p className="font-semibold text-[#298BFD]">${price.toFixed(2)}</p>
       </div>
     </li>
   );

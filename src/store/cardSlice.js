@@ -2,13 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     cards: [],
-    searchCards: [],
     selectedCard: [],
     isShow: false,
     isPay: false,
     totalCarts: 0,
     total: 0,
-}
+};
 
 export const cartSlice = createSlice({
     name: "card",
@@ -16,9 +15,6 @@ export const cartSlice = createSlice({
     reducers: {
         getCards: (state, { payload }) => {
             state.cards = payload;
-        },
-        getSearchCard: (state, { payload }) => {
-            state.searchCards = payload
         },
         getSelectCards: (state, { payload }) => {
             const exitCard = state.selectedCard.find(
@@ -30,7 +26,7 @@ export const cartSlice = createSlice({
                         return {
                             ...card,
                             qty: card.qty + 1,
-                            left: card.left - card.qty,
+                            left: card.left - 1,
                         };
                     } else {
                         return card;
@@ -38,7 +34,7 @@ export const cartSlice = createSlice({
                 });
                 state.selectedCard = addCart;
             } else {
-                state.selectedCard.push({...payload, qty: 1, left: 19 });
+                state.selectedCard.push({...payload, qty: 1, left: payload.left });
             }
         },
         getIsShow: (state, { payload }) => {
@@ -48,23 +44,22 @@ export const cartSlice = createSlice({
             state.isPay = payload;
         },
         increAndDecre: (state, { payload }) => {
-            const carts = state.selectedCard.map(card => {
+            const carts = state.selectedCard.map((card) => {
                 if (card.id === payload.id) {
                     if (payload.type === "increase") {
                         let newQty = card.qty + 1;
-                        let newLeft = card.left - 1
+                        let newLeft = card.left - 1;
 
                         if (card.qty >= 20) {
-                            newLeft = 0
+                            newLeft = 0;
                         }
 
                         //default return
                         return {
                             ...card,
                             qty: newQty,
-                            left: newLeft
+                            left: newLeft,
                         };
-
                     } else if (payload.type === "decrease") {
                         let newQty = card.qty - 1;
                         let newLeft = card.left + 1;
@@ -81,19 +76,19 @@ export const cartSlice = createSlice({
                         };
                     }
                 } else {
-                    return card
+                    return card;
                 }
-            })
+            });
 
-            state.selectedCard = carts
+            state.selectedCard = carts;
         },
         deletedCard: (state) => {
             state.selectedCard = [];
         },
         getTotalCarts: (state) => {
-            const cartQtys = state.selectedCard.map(card => card.qty)
-            const totalQty = cartQtys.reduce((prev, curr) => prev + curr)
-            state.totalCarts = totalQty
+            const cartQtys = state.selectedCard.map((card) => card.qty);
+            const totalQty = cartQtys.reduce((prev, curr) => prev + curr);
+            state.totalCarts = totalQty;
         },
         getTotalPrices: (state) => {
             const cartPrice = state.selectedCard.map(
@@ -113,6 +108,5 @@ export const {
     deletedCard,
     getTotalCarts,
     getTotalPrices,
-    getSearchCard,
 } = cartSlice.actions;
-export default cartSlice.reducer
+export default cartSlice.reducer;

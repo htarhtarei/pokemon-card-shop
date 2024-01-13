@@ -1,0 +1,23 @@
+.scrollUp {
+    color: #78350f;
+    font-size: 1.1rem;
+    background-color: var(--white-color);
+    padding: 3px 5px;
+    border-radius: 5px;
+    position: fixed;
+    bottom: 8rem;
+    right: 1.5rem;
+    animation: upDown 2s linear infinite;
+}
+
+@keyframes upDown {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}

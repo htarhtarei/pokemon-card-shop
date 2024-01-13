@@ -7,6 +7,7 @@ import { getCards } from "../../store/cardSlice";
 import Navbar from "../Navbar/Navbar"
 import Hero from "../Hero/Hero"
 import Loader from "../../utils/Loader/Loader"
+import ScrollUpBtn from "../../utils/ScrollUp/ScrollUpBtn";
 
 const Home = () => {
   const [cards, setCards] = useState([]);
@@ -33,6 +34,7 @@ const Home = () => {
         <div>
           <Navbar />
           <Hero cards={cards} />
+          <ScrollUpBtn/>
         </div>
       )}
     </div>
